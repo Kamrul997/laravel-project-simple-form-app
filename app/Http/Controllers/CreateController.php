@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\TodoList;
+use App\Models\FormData;
 
 class CreateController extends Controller
 {
@@ -27,7 +27,7 @@ class CreateController extends Controller
                 'taskFile' => 'required'
             ]
             );
-        $todoList = new TodoList;
+        $todoList = new FormData;
         $todoList->title=$request['taskTitle'];
         $todoList->description=$request['taskDescription'];
         $todoList->start_date=$request['taskStartDate'];

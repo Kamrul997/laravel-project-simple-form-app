@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\TodoList;
+use App\Models\FormData;
 
 class DeleteController extends Controller
 {
     public function delete($id){
-        TodoList::find($id)->delete();
+        FormData::find($id)->delete();
         return redirect(route("homePage"));
     }
 }

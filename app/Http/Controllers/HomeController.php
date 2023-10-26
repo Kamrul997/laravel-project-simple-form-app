@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\TodoList;
+use App\Models\FormData;
 
 class HomeController extends Controller
 {
     public function home(){
-        $tasks = TodoList::all();
+        $tasks = FormData::all();
         $data = compact('tasks');
         return view("todos.home.index")->with($data);
     }
