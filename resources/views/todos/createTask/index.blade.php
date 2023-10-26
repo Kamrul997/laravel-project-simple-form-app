@@ -5,7 +5,7 @@
 @section('bodyContent')
 
 <h2 class = "text-center">Create New Task</h2>
-<form class="mt-3 w-70 shadow p-5" method="POST" action="{{route('createNewTaskPage')}}" >
+<form class="mt-3 w-70 shadow p-5" method="POST" action="{{route('createNewTaskPage')}}" enctype="multipart/form-data">
 @csrf
   <div class="form-group my-3">
     <label class = "mb-2">Title</label>
@@ -48,28 +48,43 @@
   </div>
 
   <label class = "mb-2 mt-2">Select Mapping</label>
-  <select class="form-select">
-    <option >select</option>
+  <select name="selectMaping" class="form-select">
+    <option value="">select</option>
     <option value="1">One</option>
     <option value="2">Two</option>
     <option value="3">Three</option>
   </select>
+  <div class="text-danger">
+      @error('selectMaping')
+        {{$message}}
+      @enderror
+  </div>
   
   <label class = "mb-2 mt-2">Select Priority</label>
-  <select class="form-select">
-    <option >select</option>
+  <select name="selectPriority" class="form-select">
+    <option value="">select</option>
     <option value="1">One</option>
     <option value="2">Two</option>
     <option value="3">Three</option>
   </select>
+  <div class="text-danger">
+      @error('selectPriority')
+        {{$message}}
+      @enderror
+  </div>
  
   <label class = "mb-2 mt-2">Assign User</label>
-  <select class="form-select">
-    <option >select</option>
+  <select name="selectUser" class="form-select">
+    <option value="">select</option>
     <option value="1">One</option>
     <option value="2">Two</option>
     <option value="3">Three</option>
   </select>
+  <div class="text-danger">
+      @error('selectUser')
+        {{$message}}
+      @enderror
+  </div>
 
   <div class="form-group my-3">
     <label class = "mb-2">Remarks</label>
@@ -92,7 +107,7 @@
   </div>
   
   <label class = "">File</label>
-  <div class="input-group my-3">
+  <div class="form-group my-3">
     <input type="file" class="form-control" name="taskFile">
     <div class="text-danger">
       @error('taskFile')
