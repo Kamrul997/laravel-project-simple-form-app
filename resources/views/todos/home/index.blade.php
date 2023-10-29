@@ -51,6 +51,9 @@
   </tbody>
 </table>
 
+<div class="row">
+  {{$tasks->Links()}}
+</div>
 
 
 

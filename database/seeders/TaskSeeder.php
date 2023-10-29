@@ -27,7 +27,7 @@ class TaskSeeder extends Seeder
             $formData -> select_user = rand(1,3);
             $formData -> task_remarks = $faker->name;
             $formData -> task_links = $faker->name;
-            $formData -> task_file = "imagename" . rand(1,100) . ".jpg";
+            $formData -> task_file = "1698553681-images.jpeg";
             $formData->save();
         }
     }
