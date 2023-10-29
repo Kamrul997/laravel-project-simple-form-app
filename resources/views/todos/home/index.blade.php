@@ -38,7 +38,7 @@
         <td>{{$task->select_user}}</td>
         <td>{{$task->task_remarks}}</td>
         <td>{{$task->task_links}}</td>
-        <td>{{$task->task_file}}</td>
+        <td><img src="{{asset('files/' . $task->task_file)}}" alt="{{$task->task_file}}" style="height:40px; width:40px; border-radius:50%;"></td>
         <td>
           <div class="d-flex justify-content-between">
             <!-- <a href="{{route('detailsPage',$task->id)}}" type="submit" class="btn btn-primary btn-small">Details</a> -->

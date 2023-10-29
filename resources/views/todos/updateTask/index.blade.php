@@ -5,9 +5,9 @@
 @section('bodyContent')
 
 <h2 class = "text-center">Update Task</h2>
-<form class="mt-3" method="POST" action="{{route('updatePage')}}" >
+<form class="mt-3" method="POST" action="{{route('updatePage')}}" enctype="multipart/form-data">
 @csrf
-<input type="text" class="form-control" value="{{$task->id}}" name="id">
+<input hidden type="text" class="form-control" value="{{$task->id}}" name="id">
   <div class="form-group my-3">
     <label class = "mb-2">Title</label>
     <input type="text" class="form-control" value="{{$task->task_title}}" name="taskTitle" placeholder="Title">
