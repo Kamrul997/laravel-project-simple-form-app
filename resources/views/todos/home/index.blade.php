@@ -55,6 +55,4 @@
   {{$tasks->Links()}}
 </div>
 
-
-
 @endsection
