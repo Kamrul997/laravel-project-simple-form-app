@@ -22,7 +22,7 @@
       <th class="col">Remarks</th>
       <th class="col">Links</th>
       <th class="col">File</th>
-      <th class="col">Action</th>
+      <th class="col-2">Action</th>
     </tr>
   </thead>
   <tbody>
