@@ -8,9 +8,10 @@ use App\Models\FormData;
 class HomeController extends Controller
 {
     public function home(){
-        $tasks = FormData::all();
-        $tasks = FormData::Paginate(5);
+        $tasks = FormData::withoutTrashed()->Paginate(10);
         $data = compact('tasks');
+
+        // return $tasks;
         return view("todos.home.index")->with($data);
     }
 }
