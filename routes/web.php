@@ -30,3 +30,7 @@ Route::post('/update', [UpdateController::class, 'update'])->name("updatePage");
 Route::get('/details/{id}', [DetailsController::class, 'details'])->name("detailsPage");
 //delete page link
 Route::get('/delete/{id}', [DeleteController::class, 'delete'])->name("deletePage");
+
+Route::get('/docs', function () {
+    return view('swagger.index');
+});

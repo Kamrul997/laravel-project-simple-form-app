@@ -1,0 +1,403 @@
+swagger: '2.0'
+info:
+  description: LPT APis
+  version: 1.0.0
+  title: Runner Task Management
+host: rtms.singularitybd.co
+basePath: /api/v1
+schemes:
+  - https
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+    description: >-
+      Enter the token with the `Bearer:` prefix, e.g. "Bearer abcde12345"
+security:
+  - Bearer: []
+    # default: test
+consumes:
+  - application/json
+produces:
+  - application/json
+tags:
+  - name: Authentication
+    description: Login, Logout, Profile
+  - name: Dashboard
+    description: Dashboard related data
+  - name: GeneralTask
+    description: Show all data, update, show data by id, create, status change
+  - name: LeadGeneration
+    description: Show all data, update, show data by id, create, status change
+
+paths:
+  /login:
+    post:
+      tags:
+        - Authentication
+      summary: Login
+      description: Login with employeeId and password
+      operationId: login
+      consumes:
+        - multipart/form-data
+      parameters:
+        - name: code
+          in: formData
+          description:
+          required: true
+          type: string
+          default: 22151
+        - name: password
+          in: formData
+          description:
+          required: true
+          type: string
+          format: password
+          default: 22151
+        - name: device_type
+          in: formData
+          description: android or ios or app
+          required: true
+          type: string
+          format: string
+          default: swagger
+        - name: fcm_token
+          in: formData
+          description: firebase device token
+          required: true
+          type: string
+          format: string
+          default: fcm_token
+      responses:
+        '200':
+          description: Login successful
+        '400':
+          description: Bad request
+
+  /get-slider:
+    get:
+      tags:
+        - Dashboard
+      summary: Slider data
+      description: List of slideer
+      operationId: getSliderList
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Bad request
+
+  /get-dashboard:
+    get:
+      tags:
+        - Dashboard
+      summary: Get statistics
+      description: User task statistics data
+
+      operationId: getStatsticsList
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Bad request
+
+  /store-task:
+    post:
+      tags:
+        - GeneralTask
+      summary: Create task
+      description: Create new task
+      parameters:
+        - name: title
+          in: formData
+          description:
+          required: true
+          type: string
+          default: Test_title
+        - name: description
+          in: formData
+          description:
+          required: true
+          type: string
+          format: string
+          default: Test_description
+        - name: start_time
+          in: formData
+          description:
+          required: true
+          type: string
+          format: string
+          default: "2023-10-15 18:45:45"
+        - name: end_time
+          in: formData
+          description:
+          required: true
+          type: string
+          format: string
+          default: "2023-11-15 18:45:45"
+        - name: reminder_option_id
+          in: formData
+          description:
+          required: true
+          type: integer
+          # format: string
+          default: '2'
+        - name: reminder_option_id
+          in: formData
+          description:
+          required: true
+          type: integer
+          # format: string
+          default: "2"
+        - name: priority
+          in: formData
+          description:
+          required: true
+          type: integer
+          # format: string
+          default: "3"
+        - name: mapping_id
+          in: formData
+          description:
+          required: true
+          type: integer
+          # format: string
+          default: "3"
+        - name: category_slug
+          in: formData
+          description:
+          required: true
+          type: string
+          # format: string
+          default: "category_slug"
+        - name: remarks[]
+          in: formData
+          description:
+          required: false
+          type: array
+          items: {}
+          # format: string
+          default: [ "hello","hello2", "test" ]
+        - name: links[]
+          in: formData
+          description:
+          required: false
+          type: array
+          items: {}
+          # format: string
+          default:
+        - name: files[]
+          in: formData
+          description:
+          required: false
+          type: array
+          items: {}
+          # format: string
+          default:
+
+      operationId: createNewTask
+      consumes:
+        - multipart/form-data
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Bad request
+
+  /task3:
+    post:
+      tags:
+        - GeneralTask
+      summary: Update a task
+      description: Update task data
+
+      operationId: getStatsticsList3
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Bad request
+
+  /get-task-list:
+    get:
+      tags:
+        - GeneralTask
+      summary: Show all task
+      description: All task data
+      parameters:
+        - in: query
+          name: page
+          type: integer
+          required: false
+        - in: query
+          name: limit
+          type: integer
+          required: false
+        - in: query
+          name: start_date
+          type: string
+          required: false
+        - in: query
+          name: end_date
+          type: string
+          required: false
+        - in: query
+          name: query
+          type: string
+          required: false
+        - in: query
+          name: status
+          type: string
+          required: false
+        - in: query
+          name: user_id
+          type: integer
+          required: false
+        - in: query
+          name: feedback_id
+          type: integer
+          required: false
+      operationId: getAllTask
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Bad request
+
+  /task-details/{taskId}:
+    get:
+      tags:
+        - GeneralTask
+      summary: Show task by id
+      description: Single task data
+      parameters:
+        - name: taskId
+          in: path
+          description: Id of the task to relative
+          required: true
+          type: integer
+      operationId: getDetailsById
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Bad request
+
+  /status-update/{taskId}:
+    post:
+      tags:
+        - GeneralTask
+      summary: Change status
+      description: Change status
+      consumes:
+        - multipart/form-data
+      parameters:
+        - name: taskId
+          in: path
+          required: true
+          type: integer
+          default: 2
+        - name: type
+          in: formData
+          required: true
+          type: string
+          default: start
+        - name: start_latitude
+          in: formData
+          required: true
+          type: string
+          default: start_latitude
+        - name: start_longitude
+          in: formData
+          required: true
+          type: string
+          default: start_longitude
+        - name: end_latitude
+          in: formData
+          required: true
+          type: string
+          default: end_latitude
+        - name: end_longitude
+          in: formData
+          required: true
+          type: string
+          default: end_longitude
+      operationId: changeStatus
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Bad request
+
+  /get-profile:
+      get:
+        tags:
+          - Authentication
+        summary: Show profile data
+        description: Show profile data
+        operationId: getProfile
+        responses:
+          '200':
+            description: successful operation
+          '400':
+            description: Bad request
+
+  /logout:
+      post:
+        tags:
+          - Authentication
+        summary: Logout
+        description: Logout from profile
+        operationId: logout
+        responses:
+          '200':
+            description: successful operation
+          '400':
+            description: Bad request
+
+  /get-list:
+      get:
+        tags:
+          - LeadGeneration
+        summary: Show all
+        description: All lead generation data
+        parameters:
+          - in: query
+            name: page
+            type: integer
+            required: false
+          - in: query
+            name: limit
+            type: integer
+            required: false
+          - in: query
+            name: start_date
+            type: string
+            required: false
+          - in: query
+            name: end_date
+            type: string
+            required: false
+          - in: query
+            name: query
+            type: string
+            required: false
+          - in: query
+            name: status
+            type: string
+            required: false
+          - in: query
+            name: user_id
+            type: integer
+            required: false
+          - in: query
+            name: feedback_id
+            type: integer
+            required: false
+        operationId: getAllLeadGeneretion
+        responses:
+          '200':
+            description: successful operation
+          '400':
+            description: Bad request
