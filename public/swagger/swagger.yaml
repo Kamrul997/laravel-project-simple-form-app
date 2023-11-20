@@ -30,6 +30,10 @@ tags:
     description: Show all data, update, show data by id, create, status change
   - name: LeadGeneration
     description: Show all data, update, show data by id, create, status change
+  - name: LeadFollowup
+    description: Show all data, update, show data by id, create, status change
+  - name: EmiCollection
+    description: Show all data, update, show data by id, create, status change
 
 paths:
   /login:
@@ -396,6 +400,90 @@ paths:
             type: integer
             required: false
         operationId: getAllLeadGeneretion
+        responses:
+          '200':
+            description: successful operation
+          '400':
+            description: Bad request
+
+  /lead-followup-list:
+      get:
+        tags:
+          - LeadFollowup
+        summary: Show all
+        description: All lead followup data
+        parameters:
+          - in: query
+            name: page
+            type: integer
+            required: false
+          - in: query
+            name: limit
+            type: integer
+            required: false
+          - in: query
+            name: start_date
+            type: string
+            required: false
+          - in: query
+            name: end_date
+            type: string
+            required: false
+          - in: query
+            name: query
+            type: string
+            required: false
+          - in: query
+            name: status
+            type: string
+            required: false
+          - in: query
+            name: user_id
+            type: integer
+            required: false
+          - in: query
+            name: feedback_id
+            type: integer
+            required: false
+        operationId: getAllLeadFollowUp
+        responses:
+          '200':
+            description: successful operation
+          '400':
+            description: Bad request
+
+  /get-emi-list:
+      get:
+        tags:
+          - EmiCollection
+        summary: Show all Emi
+        description: All lead EmiCollection data
+        parameters:
+          - in: query
+            name: page
+            type: integer
+            required: false
+          - in: query
+            name: limit
+            type: integer
+            required: false
+          - in: query
+            name: due_date
+            type: string
+            required: false
+          - in: query
+            name: query
+            type: string
+            required: false
+          - in: query
+            name: status
+            type: string
+            required: false
+          - in: query
+            name: user_id
+            type: integer
+            required: false
+        operationId: getAllEmiCollection
         responses:
           '200':
             description: successful operation
